@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package prime;
+
+service PrimeService {
+  rpc IsPrime (PrimeRequest) returns (PrimeResponse);
+  rpc FirstPrime (FirstPrimeRequest) returns (FirstPrimeResponse);
+  rpc IntervalPrime (IntervalRequest) returns (stream PrimeNumber);
+}
+
+message PrimeRequest {
+  int64 number = 1;
+}
+
+message PrimeResponse {
+  bool is_prime = 1;
+  repeated int64 factors = 2;
+}
+
+message FirstPrimeRequest {
+  int64 n = 1;
+}
+
+message FirstPrimeResponse {
+  repeated int64 primes = 1;
+}
+
+message IntervalRequest {
+  int64 min = 1;
+  int64 max = 2;
+}
+
+message PrimeNumber {
+  int64 value = 1;
+}
